@@ -1,0 +1,117 @@
+<?php
+/*
+ * Title: Edit (VIEW)
+ * A "view" that will allow users to edit their information
+ * Name: Michael Tran
+ * Date: 12/02/2012
+ * Date Approved:
+ * Name of Approver:
+ *
+ * ASSUMES A USER IS LOGGED IN ALREADY
+ *
+ *
+ * Names of files accessed:
+ * Names of files changed:
+ *
+ * Faults:
+ */
+// ./application/views/index/edit.phtml
+
+$this->title = "Edit Page";
+$this->headTitle($this->title);
+include ("./include/getInformation.php");
+
+$information = new getInformation();
+
+
+$userInfo = Zend_Auth::getInstance()->getStorage()->read();
+if ($userInfo->p_number != null) {
+    $userid = $userInfo->p_number;
+    $usertype = 'Yes';
+} else {
+    $userid = $userInfo->m_number;
+    $usertype = 'No';
+}
+
+
+if ($usertype == 'No') {
+// START USER CODE
+    ?>
+    <form id='changeMemberName' action='' method='post' accept-charset='UTF-8'>
+        <b>Current Name:</b> <?php echo $information->getMemberName($userid); ?>
+        <input type='text' name='name' id='name' maxlength="50" />
+        <input type='submit' name='SubmitMemberName' value='Submit' />
+    </form>
+    <form id='changeMemberCity' action='' method='post' accept-charset='UTF-8'>
+        <b>Current City:</b> <?php echo $information->getMemberCity($userid); ?>
+        <input type='text' name='city' id='city' maxlength="50" />
+        <input type='submit' name='SubmitMemberCity' value='Submit' />
+    </form>
+    <form id='changeMemberState' action='' method='post' accept-charset='UTF-8'>
+        <b>Current State:</b> <?php echo $information->getMemberState($userid); ?>
+        <input type='text' name='state' id='state' maxlength="50" />
+        <input type='submit' name='SubmitMemberState' value='Submit' />
+    </form>
+    <form id='changeMemberZipcode' action='' method='post' accept-charset='UTF-8'>
+        <b>Current Zip-code:</b> <?php echo $information->getMemberZipcode($userid); ?>
+        <input type='text' name='zipcode' id='zipcode' maxlength="50" />
+        <input type='submit' name='SubmitMemberZipcode' value='Submit' />
+    </form>
+    <form id='changeMemberEmail' action='' method='post' accept-charset='UTF-8'>
+        <b>Current Email:</b> <?php echo $information->getMemberEmail($userid); ?>
+        <input type='text' name='email' id='email' maxlength="50" />
+        <input type='submit' name='SubmitMemberEmail' value='Submit' />
+    </form>
+    <form id='changeMemberPassword' action='' method='post' accept-charset='UTF-8'>
+        <b>Change password to:</b>
+        <input type='text' name='password' id='password' maxlength="50" />
+        <input type='submit' name='SubmitMemberPassword' value='Submit' />
+    </form>
+    <p>
+    <form id='deleteMember' action='' method='post' accept-charset='UTF-8'>
+        <b>Delete Account</b>
+        <input type='submit' name='SubmitDeleteMember' value='Submit' />
+    </form>
+    <?php
+}   // END USER CODE
+else if ($usertype == 'Yes') {
+    // START PROVIDER CODE
+    ?>
+    <form id='changeProviderName' action='' method='post' accept-charset='UTF-8'>
+        <b>Current Name:</b> <?php echo $information->getProviderName($userid); ?>
+        <input type='text' name='name' id='name' maxlength="50" />
+        <input type='submit' name='SubmitProviderName' value='Submit' />
+    </form>
+    <form id='changeProviderCity' action='' method='post' accept-charset='UTF-8'>
+        <b>Current City:</b> <?php echo $information->getProviderCity($userid); ?>
+        <input type='text' name='city' id='city' maxlength="50" />
+        <input type='submit' name='SubmitProviderCity' value='Submit' />
+    </form>
+    <form id='changeProviderState' action='' method='post' accept-charset='UTF-8'>
+        <b>Current State:</b> <?php echo $information->getProviderState($userid); ?>
+        <input type='text' name='state' id='state' maxlength="50" />
+        <input type='submit' name='SubmitProviderState' value='Submit' />
+    </form>
+    <form id='changeProviderZipcode' action='' method='post' accept-charset='UTF-8'>
+        <b>Current Zip-code:</b> <?php echo $information->getProviderZipcode($userid); ?>
+        <input type='text' name='zipcode' id='zipcode' maxlength="50" />
+        <input type='submit' name='SubmitProviderZipcode' value='Submit' />
+    </form>
+    <form id='changeProviderEmail' action='' method='post' accept-charset='UTF-8'>
+        <b>Current Email:</b> <?php echo $information->getProviderEmail($userid); ?>
+        <input type='text' name='email' id='email' maxlength="50" />
+        <input type='submit' name='SubmitProviderEmail' value='Submit' />
+    </form>
+    <form id='changeProviderPassword' action='' method='post' accept-charset='UTF-8'>
+        <b>Change password to:</b>
+        <input type='text' name='password' id='password' maxlength="50" />
+        <input type='submit' name='SubmitProviderPassword' value='Submit' />
+    </form>
+    <p>
+    <form id='deleteProvider' action='' method='post' accept-charset='UTF-8'>
+        <b>Delete Account</b>
+        <input type='submit' name='SubmitDeleteProvider' value='Submit' />
+    </form>
+    <?php
+}   // END PROVIDER CODE
+?>

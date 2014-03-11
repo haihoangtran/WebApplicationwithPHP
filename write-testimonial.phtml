@@ -1,0 +1,16 @@
+<br /><br />
+<div id="view-content">
+    <p>View script for controller <b>Testimonial</b> and script/action name <b>write Testimonial</b></p>
+
+    <?php
+    if ($this->activeUser != NULL) {
+        
+        echo $this->form;
+
+        //if ($this->isSet == true) {
+        //    echo $this->formDat;
+        //}
+    } else {
+        echo '<p>You must login!</p>';
+    } ?>
+</div>
